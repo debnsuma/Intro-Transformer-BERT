@@ -1,39 +1,16 @@
-## Fine tune a PyTorch BERT model and deploy it with Elastic Inference on Amazon SageMaker
+## Fine Tuning BERT for Disaster Tweets Classification
 
 ### Background and Motivation
 
-Text classification is a technique for putting text into different categories and has a wide range
-of applications: email providers use text classification to detect to spam emails, marketing
-agencies use it for sentiment analysis of customer reviews, and moderators of discussion forums use
-it to detect inappropriate comments.
+Text classification is a technique for putting text into different categories and has a wide range of applications: email providers use text classification to detect to spam emails, marketing agencies use it for sentiment analysis of customer reviews, and moderators of discussion forums use it to detect inappropriate comments.
 
-In the past, data scientists used methods such as [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf),
-[word2vec](https://en.wikipedia.org/wiki/Word2vec), or [bag-of-words (BOW)](https://en.wikipedia.org/wiki/Bag-of-words_model)
-to generate features for training classification models. While these techniques have been very
-successful in many NLP tasks, they don't always capture the meanings of words accurately when they
-appear in different contexts. Recently, we see increasing interest in using Bidirectional Encoder
-Representations from Transformers (BERT) to achieve better results in text classification tasks,
-due to its ability more accurately encode the meaning of words in different contexts.
+In the past, data scientists used methods such as [tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf), [word2vec](https://en.wikipedia.org/wiki/Word2vec), or [bag-of-words (BOW)](https://en.wikipedia.org/wiki/Bag-of-words_model) to generate features for training classification models. While these techniques have been very successful in many NLP tasks, they don't always capture the meanings of words accurately when they appear in different contexts. Recently, we see increasing interest in using [Bidirectional Encoder Representations from Transformers (BERT)](https://arxiv.org/abs/1810.04805) to achieve better results in text classification tasks, due to its ability more accurately encode the meaning of words in different contexts.
 
-Amazon SageMaker is a fully managed service that provides developers and data scientists with the
-ability to build, train, and deploy machine learning (ML) models quickly. Amazon SageMaker removes
-the heavy lifting from each step of the machine learning process to make it easier to develop
-high-quality models. The SageMaker Python SDK provides open source APIs and containers that make it
-easy to train and deploy models in Amazon SageMaker with several different machine learning and
-deep learning frameworks. We use an Amazon SageMaker Notebook Instance for running the code.
-For information on how to use Amazon SageMaker Notebook Instances,
-see the [AWS documentation](https://docs.aws.amazon.com/sagemaker/latest/dg/nbi.html).
+BERT was trained on BookCorpus and English Wikipedia data, which contain 800 million words and 2,500 million words, respectively. Training BERT from scratch would be prohibitively expensive. By taking advantage of transfer learning, one can quickly fine tune BERT for another use case with a relatively small amount of training data to achieve state-of-the-art results for common NLP tasks, such as text classification and question answering. 
 
-Our customers often ask for quick fine-tuning and easy deployment of their NLP models. Furthermore,
-customers prefer low inference latency and low model inference cost.
-[Amazon Elastic Inference](https://aws.amazon.com/machine-learning/elastic-inference/) enables
-attaching GPU-powered inference acceleration to endpoints, reducing the cost of deep learning
-inference without sacrificing performance.
+[Amazon SageMaker](https://docs.aws.amazon.com/sagemaker/index.html) is a fully managed service that provides developers and data scientists with the ability to build, train, and deploy machine learning (ML) models quickly. Amazon SageMaker removes the heavy lifting from each step of the machine learning process to make it easier to develop high-quality models. The [SageMaker Python SDK](https://sagemaker.readthedocs.io/en/stable/) provides open source APIs and containers that make it easy to train and deploy models in Amazon SageMaker with several different machine learning and deep learning frameworks.
 
-The notebook in this repository demonstrates how to use Amazon SageMaker to fine tune a PyTorch
-BERT model and deploy it with Elastic Inference. We walk through our dataset, the training process,
-and finally model deployment. This work is inspired by a post by
-[Chris McCormick and Nick Ryan](https://mccormickml.com/2019/07/22/BERT-fine-tuning/).
+In this example, we walk through our dataset, the training process, and finally model deployment. 
 
 ### What is BERT?
 
@@ -72,6 +49,13 @@ https://arxiv.org/pdf/1810.04805.pdf
 Sanja Fidler. 2015. Aligning books and movies: Towards story-like visual explanations by watching
 movies and reading books. In Proceedings of the IEEE international conference on computer vision,
 pages 19–27.
+
+[3] Getting Started with Google BERT
+https://www.packtpub.com/product/getting-started-with-google-bert/9781838821593
+
+[4] Data Science on AWS
+https://www.oreilly.com/library/view/data-science-on/9781492079385/
+
 
 ## License
 
